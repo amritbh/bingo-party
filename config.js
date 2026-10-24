@@ -52,6 +52,43 @@ const BINGO_CONFIG = {
     // (You can use any two languages — rename keys as needed)
     // ==========================================
     blessings: {
+        // Sanskrit Mantras & Vedic/Puranic Blessings
+        sanskrit: {
+            label: "🕉️ Sanskrit Mantras & Tika Ashirbad (संस्कृत मन्त्र तथा आशीर्वाद)",
+            items: [
+                {
+                    title: "दशैं पुरुष टीका मन्त्र (Tika Ashirbad for Men)",
+                    nepali: "आयुर्द्रोणसुते श्रियं दशरथे शत्रुक्षयं राघवे ।\nमैत्रीं दैत्यसुते बलं हलधरे सत्यं च कुन्तीसुते ।\nविज्ञानं विदुरे भवतु भवतां कीर्तिश्च नारायणे ।\nदानं सूर्यसुते बलं बलभिदे मानं च दुर्योधने ॥",
+                    english: "May your lifespan be like Ashwatthama, wealth like Dasharatha, victory like Rama, devotion like Vibhishana, strength like Balarama, truthfulness like Yudhishthira, wisdom like Vidura, fame like Narayana, charity like Karna, and honor like Duryodhana."
+                },
+                {
+                    title: "दशैं महिला टीका मन्त्र / नवदुर्गा स्तुति (Tika Ashirbad for Women)",
+                    nepali: "जयन्ती मङ्गला काली भद्रकाली कपालिनी ।\nदुर्गा क्षमा शिवा धात्री स्वाहा स्वधा नमोऽस्तु ते ॥",
+                    english: "Salutations to Jayanti, Mangala, Kali, Bhadrakali, Kapalini, Durga, Kshama, Shiva, Dhatri, Svaha, and Svadha. May Goddess Durga bless you with auspiciousness, strength, and divine grace."
+                },
+                {
+                    title: "सर्वमङ्गल माङ्गल्ये (Universal Auspiciousness)",
+                    nepali: "सर्वमङ्गलमाङ्गल्ये शिवे सर्वार्थसाधिके ।\nशरण्ये त्र्यम्बके गौरि नारायणि नमोऽस्तु ते ॥",
+                    english: "Auspiciousness of all auspiciousness, fulfiller of all righteous desires, refuge of the universe, three-eyed Gauri, salutations to Narayani!"
+                },
+                {
+                    title: "शक्ति रूप मन्त्र (Inner Power & Radiance)",
+                    nepali: "या देवी सर्वभूतेषु शक्तिरूपेण संस्थिता ।\nनमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः ॥",
+                    english: "Salutations to the Supreme Goddess who resides in all living beings as the essence of strength and vitality. Salutations again and again."
+                },
+                {
+                    title: "सर्वाबाधा विनिर्मुक्तो (Freedom from Obstacles & Prosperity)",
+                    nepali: "सर्वाबाधाविनिर्मुक्तो धनधान्यसुतान्वितः ।\nमनुष्यो मत्प्रसादेन भविष्यति न संशयः ॥",
+                    english: "Liberated from all hurdles, endowed with prosperity, good health, and family happiness, by divine grace one shall surely flourish."
+                },
+                {
+                    title: "विश्व कल्याण शान्ति मन्त्र (Universal Peace & Well-being)",
+                    nepali: "ॐ सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः ।\nसर्वे भद्राणि पश्यन्तु मा कश्चिद्दुःखभाग्भवेत् ॥",
+                    english: "May all beings everywhere be happy; may all be healthy and free from suffering; may all perceive what is auspicious; may none experience sorrow."
+                }
+            ]
+        },
+
         // Category 1 — e.g., for daughters, women, or group A
         category1: {
             label: "🌺 For Daughters (छोरीहरूको लागि)",

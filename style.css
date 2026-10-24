@@ -974,12 +974,48 @@ body {
     box-shadow: var(--shadow-md);
 }
 
+.ashirbad-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--marigold-yellow);
+    background: rgba(249, 168, 37, 0.12);
+    border: 1px solid rgba(249, 168, 37, 0.3);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.sanskrit-card {
+    background: linear-gradient(145deg, rgba(42, 21, 21, 0.95), rgba(53, 24, 24, 0.95));
+    border: 1px solid rgba(255, 179, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.sanskrit-card::before {
+    background: linear-gradient(90deg, #FFB300, #F9A825, #D32F2F);
+    height: 4px;
+}
+
+.sanskrit-card:hover {
+    border-color: rgba(255, 179, 0, 0.5);
+    box-shadow: 0 6px 20px rgba(255, 179, 0, 0.15);
+}
+
+.sanskrit-text {
+    font-family: 'Mukta', var(--font-family);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #FFF8E1;
+    letter-spacing: 0.2px;
+}
+
 .ashirbad-nepali {
     font-size: var(--font-size-lg);
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: var(--space-sm);
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .ashirbad-english {
@@ -987,6 +1023,20 @@ body {
     color: var(--text-muted);
     font-style: italic;
     line-height: 1.5;
+}
+
+.winner-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    font-size: var(--font-size-xs);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--marigold-yellow);
+    background: rgba(249, 168, 37, 0.2);
+    border: 1px solid var(--marigold-yellow);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-sm);
 }
 
 .ashirbad-actions {

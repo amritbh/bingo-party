@@ -323,62 +323,66 @@ function playCallSound() {
 // ASHIRBAD (BLESSINGS) 
 // ==========================================
 
-// Build ASHIRBADS from config (falls back to empty if no config)
+// Build ASHIRBADS from config
 function getAshirbads() {
-    const blessings = CFG.blessings || {};
-    return {
-        category1: blessings.category1 || { label: 'Category 1', items: [] },
-        category2: blessings.category2 || { label: 'Category 2', items: [] },
-        category3: blessings.category3 || { label: 'Category 3', items: [] },
-    };
+    return CFG.blessings || {};
 }
 
 function loadAshirbads() {
-    const ashirbads = getAshirbads();
+    const blessings = getAshirbads();
+    const container = document.getElementById('ashirbad-categories-container');
+    if (!container) return;
 
-    // Update section labels from config
-    const sections = document.querySelectorAll('.ashirbad-section');
-    const categories = [ashirbads.category1, ashirbads.category2, ashirbads.category3];
-    const containerIds = ['ashirbad-girls', 'ashirbad-boys', 'ashirbad-all'];
+    container.innerHTML = Object.entries(blessings).map(([key, cat]) => {
+        const items = cat.items || [];
+        const isSanskrit = key === 'sanskrit';
+        const cardsHtml = items.map(a => {
+            const titleHtml = a.title ? `<div class="ashirbad-badge">${a.title}</div>` : '';
+            const nepaliFormatted = a.nepali ? a.nepali.replace(/\n/g, '<br>') : '';
+            return `
+                <div class="ashirbad-card ${isSanskrit ? 'sanskrit-card' : ''}">
+                    ${titleHtml}
+                    <div class="ashirbad-nepali ${isSanskrit ? 'sanskrit-text' : ''}">${nepaliFormatted}</div>
+                    <div class="ashirbad-english">${a.english || ''}</div>
+                </div>
+            `;
+        }).join('');
 
-    categories.forEach((cat, i) => {
-        if (sections[i]) {
-            sections[i].querySelector('h3').innerHTML = cat.label;
-        }
-        renderAshirbadCards(containerIds[i], cat.items);
-    });
-}
-
-function renderAshirbadCards(containerId, ashirbads) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = ashirbads.map(a => `
-        <div class="ashirbad-card">
-            <div class="ashirbad-nepali">${a.nepali}</div>
-            <div class="ashirbad-english">${a.english}</div>
-        </div>
-    `).join('');
+        return `
+            <div class="ashirbad-section" id="ashirbad-section-${key}">
+                <h3>${cat.label || 'Blessings'}</h3>
+                <div class="ashirbad-cards">
+                    ${cardsHtml}
+                </div>
+            </div>
+        `;
+    }).join('');
 }
 
 function randomAshirbad() {
-    const ashirbads = getAshirbads();
-    const allAshirbads = [
-        ...ashirbads.category1.items,
-        ...ashirbads.category2.items,
-        ...ashirbads.category3.items
-    ];
+    const blessings = getAshirbads();
+    let allAshirbads = [];
+    Object.values(blessings).forEach(cat => {
+        if (cat.items && Array.isArray(cat.items)) {
+            allAshirbads.push(...cat.items);
+        }
+    });
     if (allAshirbads.length === 0) return;
 
     const random = allAshirbads[Math.floor(Math.random() * allAshirbads.length)];
     const ashirbadCfg = CFG.ashirbadPage || {};
-    const emojis = ashirbadCfg.winnerEmojis || ['🏆', '🎉', '🌺', '🪷', '🙏', '✨', '🎊'];
+    const emojis = ashirbadCfg.winnerEmojis || ['🏆', '🎉', '🌺', '🪷', '🙏', '✨', '🎊', '🕉️'];
     const emoji = emojis[Math.floor(Math.random() * emojis.length)];
 
     const container = document.getElementById('winner-ashirbad');
     container.classList.remove('hidden');
+    const titleHtml = random.title ? `<div class="winner-badge">${random.title}</div>` : '';
+    const nepaliFormatted = random.nepali ? random.nepali.replace(/\n/g, '<br>') : '';
     container.innerHTML = `
         <div class="winner-emoji">${emoji}</div>
-        <div class="winner-text">${random.nepali}</div>
-        <div class="winner-translation">${random.english}</div>
+        ${titleHtml}
+        <div class="winner-text">${nepaliFormatted}</div>
+        <div class="winner-translation">${random.english || ''}</div>
     `;
 
     container.scrollIntoView({ behavior: 'smooth' });

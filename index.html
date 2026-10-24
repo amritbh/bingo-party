@@ -7,7 +7,7 @@
     <meta name="description" content="Dashain themed Bingo game for Nepali community celebrations">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Mukta:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -202,27 +202,12 @@
             <div class="ashirbad-container">
                 <div class="ashirbad-header">
                     <div class="tika-dot-small"></div>
-                    <h2>दशैंको शुभकामना</h2>
-                    <h3>Dashain Ashirbad</h3>
-                    <p>Blessings for the winners and all players</p>
+                    <h2>दशैंको शुभकामना तथा मन्त्र</h2>
+                    <h3>Dashain Ashirbad & Mantras</h3>
+                    <p>Traditional Sanskrit mantras & Dashain blessings for winners and all players</p>
                 </div>
-                <div class="ashirbad-section">
-                    <h3>🌺 For Daughters (छोरीहरूको लागि)</h3>
-                    <div class="ashirbad-cards" id="ashirbad-girls">
-                        <!-- Generated dynamically -->
-                    </div>
-                </div>
-                <div class="ashirbad-section">
-                    <h3>🌿 For Sons (छोराहरूको लागि)</h3>
-                    <div class="ashirbad-cards" id="ashirbad-boys">
-                        <!-- Generated dynamically -->
-                    </div>
-                </div>
-                <div class="ashirbad-section">
-                    <h3>🙏 For Everyone (सबैका लागि)</h3>
-                    <div class="ashirbad-cards" id="ashirbad-all">
-                        <!-- Generated dynamically -->
-                    </div>
+                <div id="ashirbad-categories-container">
+                    <!-- Generated dynamically from config.js -->
                 </div>
                 <div class="ashirbad-actions">
                     <button class="btn-primary" onclick="randomAshirbad()" id="btn-random-ashirbad">
