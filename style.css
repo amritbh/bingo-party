@@ -2305,24 +2305,59 @@ body {
     display: block;
 }
 
+.music-panel-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.music-btn-yt {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: #CC0000;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.music-btn-yt:hover {
+    background: #FF0000;
+    transform: scale(1.05);
+}
+
+.music-btn-minimize,
 .music-btn-close {
     background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     color: #FFF;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1;
     transition: background 0.2s ease, transform 0.2s ease;
 }
 
+.music-btn-minimize:hover {
+    background: rgba(255, 179, 0, 0.6);
+    color: #1A0507;
+    transform: scale(1.08);
+}
+
 .music-btn-close:hover {
-    background: rgba(211, 47, 47, 0.7);
-    transform: rotate(90deg);
+    background: rgba(211, 47, 47, 0.85);
+    transform: scale(1.08);
 }
 
 /* YouTube Iframe Viewport */

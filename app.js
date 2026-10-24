@@ -716,28 +716,28 @@ const DASHAIN_PLAYLIST = [
         badge: '🌟 Evergreen'
     },
     {
-        id: '7Tf7W5d-2qM',
+        id: 'LnOajzcjBz4',
         title: 'Dashain Tihar (दशैं तिहार)',
-        artist: 'Sugam Pokharel',
-        badge: '🎵 Hit'
+        artist: 'Sugam Pokharel (Official 1MB)',
+        badge: '🎵 Superhit'
     },
     {
-        id: '5_4G4c9vVvA',
+        id: 'bttgjrjIrQc',
         title: 'Dashain Aayo (दशैं आयो खाउँला पिउँला)',
-        artist: 'Udit Narayan & Deepa Jha (Muglan)',
+        artist: 'Udit Narayan & Dipa Narayan (Muglan)',
         badge: '🎉 Classic'
     },
     {
-        id: 'l4Z8L-y6W14',
+        id: 'fF2uVCQEUdQ',
         title: 'Rato Tika Nidharma (रातो टीका निधारमा)',
-        artist: 'Udit Narayan & Sushma Shrestha (Allare)',
-        badge: '✨ Superhit'
+        artist: 'Pramod Kharel & Melina Rai (OSR Digital)',
+        badge: '✨ Festive Hit'
     },
     {
-        id: 'kFwN_7vHnfc',
-        title: 'Malshree Dhun (दशैं मंगल मालश्री धुन)',
-        artist: 'Traditional Sacred Instrumental',
-        badge: '🕉️ Dhun'
+        id: 'QuLArfhYV2M',
+        title: 'Malashree Dhoon (दशैं मंगल मालश्री धुन)',
+        artist: 'Traditional Sacred Music Nepal',
+        badge: '🕉️ Sacred Dhun'
     }
 ];
 
@@ -749,6 +749,17 @@ function toggleMusicWidget() {
     widget.classList.toggle('collapsed');
 }
 
+function minimizeMusicWidget() {
+    const widget = document.getElementById('dashain-music-widget');
+    if (widget) {
+        widget.classList.add('collapsed');
+    }
+}
+
+function closeMusicWidget() {
+    minimizeMusicWidget();
+}
+
 function playTrack(index) {
     if (index < 0 || index >= DASHAIN_PLAYLIST.length) return;
     currentTrackIndex = index;
@@ -758,9 +769,13 @@ function playTrack(index) {
     const trackNameEl = document.getElementById('current-track-name');
     const statusEl = document.getElementById('music-pill-status');
     const widget = document.getElementById('dashain-music-widget');
+    const openYtBtn = document.getElementById('btn-open-yt');
 
     if (iframe) {
-        iframe.src = `https://www.youtube-nocookie.com/embed/${track.id}?autoplay=1&enablejsapi=1`;
+        iframe.src = `https://www.youtube.com/embed/${track.id}?autoplay=1&enablejsapi=1`;
+    }
+    if (openYtBtn) {
+        openYtBtn.href = `https://www.youtube.com/watch?v=${track.id}&list=RD${track.id}`;
     }
     if (trackNameEl) {
         trackNameEl.textContent = track.title;

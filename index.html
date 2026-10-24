@@ -338,15 +338,22 @@
                         <span class="music-panel-sub">Dashain Songs & Malshree Dhun</span>
                     </div>
                 </div>
-                <button class="music-btn-close" onclick="toggleMusicWidget()" title="Minimize Player" aria-label="Close">✕</button>
+                <div class="music-panel-actions">
+                    <a id="btn-open-yt" href="https://www.youtube.com/watch?v=R0qkiV5lLeM&list=RDR0qkiV5lLeM" target="_blank" rel="noopener noreferrer" class="music-btn-yt" title="Open on YouTube (YouTube मा खोल्नुहोस्)">
+                        <span>▶ YouTube</span>
+                    </a>
+                    <button class="music-btn-minimize" onclick="minimizeMusicWidget()" title="Minimize to floating pill (सानो बनाउनुहोस्)" aria-label="Minimize">—</button>
+                    <button class="music-btn-close" onclick="closeMusicWidget()" title="Close Player (बन्द गर्नुहोस्)" aria-label="Close">✕</button>
+                </div>
             </div>
 
             <!-- YouTube Embedded Iframe Viewport -->
             <div class="music-iframe-wrapper">
                 <iframe id="dashain-yt-iframe" 
-                        src="https://www.youtube-nocookie.com/embed/R0qkiV5lLeM?enablejsapi=1" 
+                        src="https://www.youtube.com/embed/R0qkiV5lLeM?enablejsapi=1" 
                         title="Evergreen Dashain Best Songs Collection" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
                         allowfullscreen>
                 </iframe>
             </div>
