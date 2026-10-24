@@ -795,14 +795,53 @@ body {
     font-weight: 800;
 }
 
+.free-space-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.1;
+}
+
+.free-space-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #FFD700;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2px;
+}
+
+.free-space-text {
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
 .card-bottom-bar {
     background: linear-gradient(135deg, var(--jamara-green), var(--jamara-green-dark));
     padding: var(--space-xs) var(--space-md);
     text-align: center;
     color: white;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.card-footer-icon {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #FFD700;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    flex-shrink: 0;
+    vertical-align: middle;
 }
 
 /* ========================================
@@ -1416,6 +1455,27 @@ body {
     .print-page.cards-6 .card-bottom-bar {
         padding: 2px 4px !important;
         font-size: 0.58rem !important;
+        gap: 3px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .print-page.cards-6 .card-footer-icon {
+        width: 10px !important;
+        height: 10px !important;
+        border-width: 0.8px !important;
+    }
+
+    .print-page.cards-6 .free-space-icon {
+        width: 12px !important;
+        height: 12px !important;
+        margin-bottom: 0px !important;
+    }
+
+    .print-page.cards-6 .free-space-text {
+        font-size: 0.52rem !important;
+        line-height: 1.0 !important;
     }
 
     .bingo-card {
@@ -1470,8 +1530,49 @@ body {
         text-align: center !important;
         font-size: 0.72rem !important;
         font-weight: 700 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
+    }
+
+    .card-footer-icon {
+        width: 13px !important;
+        height: 13px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        border: 1px solid #FFD700 !important;
+        flex-shrink: 0 !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .free-space-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        line-height: 1.05 !important;
+    }
+
+    .free-space-icon {
+        width: 18px !important;
+        height: 18px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        border: 1px solid #D32F2F !important;
+        margin-bottom: 1px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .free-space-text {
+        font-size: 0.65rem !important;
+        font-weight: 900 !important;
     }
 
     .bingo-header-row {

@@ -26,9 +26,11 @@ const BINGO_CONFIG = {
     // ==========================================
     card: {
         headerText: "दशैं BINGO",          // Text on top of each card
-        freeSpaceEmoji: "🪷",              // Emoji in the free center space
-        freeSpaceText: "FREE",             // Text under the emoji
-        footerText: "विजया दशमीको हार्दिक मंगलमय शुभकामना! 🌺", // Bottom of each card
+        freeSpaceEmoji: "🪷",              // Emoji in the free center space (fallback)
+        freeSpaceLogo: "assets/tika_jamara_logo.png", // Jamara & Tika emblem in center free space
+        freeSpaceText: "FREE",             // Text under the emoji/logo
+        footerText: "विजया दशमीको हार्दिक मंगलमय शुभकामना!", // Bottom of each card
+        footerLogo: "assets/tika_jamara_logo.png", // Authentic Jamara & Tika logo icon in footer bar
     },
 
     // ==========================================

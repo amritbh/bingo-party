@@ -101,9 +101,10 @@ function createCardHTML(cardId) {
     const letters = ['B', 'I', 'N', 'G', 'O'];
     const cardCfg = CFG.card || {};
     const headerText = cardCfg.headerText || 'BINGO';
-    const freeEmoji = cardCfg.freeSpaceEmoji || '🪷';
     const freeText = cardCfg.freeSpaceText || 'FREE';
-    const footerText = cardCfg.footerText || 'Good Luck! 🎉';
+    const freeLogo = cardCfg.freeSpaceLogo ? `<img src="${cardCfg.freeSpaceLogo}" alt="Jamara Tika" class="free-space-icon">` : (cardCfg.freeSpaceEmoji || '🪷');
+    const footerText = cardCfg.footerText || 'विजया दशमीको हार्दिक मंगलमय शुभकामना!';
+    const footerLogo = cardCfg.footerLogo ? `<img src="${cardCfg.footerLogo}" alt="Jamara Tika" class="card-footer-icon">` : '';
 
     let html = `
         <div class="bingo-card" id="card-${cardId}">
@@ -121,7 +122,7 @@ function createCardHTML(cardId) {
         for (let col = 0; col < 5; col++) {
             const value = columns[col][row];
             if (value === 'FREE') {
-                html += `<div class="bingo-cell free-space">${freeEmoji}<br>${freeText}</div>`;
+                html += `<div class="bingo-cell free-space"><div class="free-space-content">${freeLogo}<span class="free-space-text">${freeText}</span></div></div>`;
             } else {
                 html += `<div class="bingo-cell">${value}</div>`;
             }
@@ -132,7 +133,7 @@ function createCardHTML(cardId) {
                 </div>
             </div>
             <div class="card-bottom-bar">
-                ${footerText}
+                ${footerLogo ? `${footerLogo} ` : ''}<span>${footerText}</span>${footerLogo ? ` ${footerLogo}` : ''}
             </div>
         </div>`;
 
