@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Festive Background Slideshow (Jamara, Tika, Dakshina & Linge Ping) -->
+    <div id="bg-slideshow" class="bg-slideshow" aria-hidden="true">
+        <!-- Generated dynamically from config.js -->
+        <div class="bg-overlay"></div>
+    </div>
+
     <!-- Landing / Navigation -->
     <div id="app">
         <nav id="main-nav">
@@ -23,6 +29,13 @@
                 <button class="nav-btn" data-page="cards" id="nav-cards">Print Cards</button>
                 <button class="nav-btn" data-page="caller" id="nav-caller">Number Caller</button>
                 <button class="nav-btn" data-page="ashirbad" id="nav-ashirbad">Ashirbad</button>
+            </div>
+            <div class="nav-controls">
+                <div class="bg-controls" id="bg-controls" title="Dashain Background Slideshow">
+                    <button class="bg-control-btn" onclick="prevBgSlide()" title="Previous background (Tika / Jamara / Linge Ping)" aria-label="Previous background">‹</button>
+                    <span class="bg-control-label" id="bg-slide-label" onclick="toggleBgSlideshow()" title="Click to pause/resume background slideshow">🌸 1/4</span>
+                    <button class="bg-control-btn" onclick="nextBgSlide()" title="Next background" aria-label="Next background">›</button>
+                </div>
             </div>
         </nav>
 

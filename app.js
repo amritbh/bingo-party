@@ -390,6 +390,97 @@ function randomAshirbad() {
 
 
 // ==========================================
+// BACKGROUND SLIDESHOW MANAGER
+// ==========================================
+let bgSlideIndex = 0;
+let bgSlideInterval = null;
+let bgIsPaused = false;
+
+function initBgSlideshow() {
+    const bgCfg = CFG.background || {};
+    if (bgCfg.enabled === false) {
+        const el = document.getElementById('bg-slideshow');
+        if (el) el.style.display = 'none';
+        const ctrl = document.getElementById('bg-controls');
+        if (ctrl) ctrl.style.display = 'none';
+        return;
+    }
+
+    const images = bgCfg.images || [
+        { src: 'assets/bg-tika-jamara.jpg', title: 'Tika & Jamara Thali' },
+        { src: 'assets/bg-linge-ping.jpg', title: 'Linge Ping Swing' },
+        { src: 'assets/bg-jamara-pot.jpg', title: 'Jamara & Diyo' },
+        { src: 'assets/bg-tika-blessing.jpg', title: 'Tika Blessing' }
+    ];
+
+    const container = document.getElementById('bg-slideshow');
+    if (!container) return;
+
+    // Render slides dynamically with overlay
+    container.innerHTML = images.map((img, i) => `
+        <div class="bg-slide ${i === 0 ? 'active' : ''}" style="background-image: url('${img.src}')"></div>
+    `).join('') + '<div class="bg-overlay"></div>';
+
+    updateBgSlideLabel();
+
+    const intervalMs = (bgCfg.intervalSeconds || 8) * 1000;
+    if (bgCfg.autoPlay !== false) {
+        startBgSlideshow(intervalMs);
+    }
+}
+
+function startBgSlideshow(intervalMs = 8000) {
+    if (bgSlideInterval) clearInterval(bgSlideInterval);
+    bgSlideInterval = setInterval(() => {
+        if (!bgIsPaused) {
+            nextBgSlide();
+        }
+    }, intervalMs);
+}
+
+function showBgSlide(index) {
+    const slides = document.querySelectorAll('.bg-slide');
+    if (!slides.length) return;
+    bgSlideIndex = (index + slides.length) % slides.length;
+
+    slides.forEach((slide, i) => {
+        if (i === bgSlideIndex) {
+            slide.classList.add('active');
+        } else {
+            slide.classList.remove('active');
+        }
+    });
+
+    updateBgSlideLabel();
+}
+
+function nextBgSlide() {
+    showBgSlide(bgSlideIndex + 1);
+}
+
+function prevBgSlide() {
+    showBgSlide(bgSlideIndex - 1);
+}
+
+function toggleBgSlideshow() {
+    bgIsPaused = !bgIsPaused;
+    updateBgSlideLabel();
+}
+
+function updateBgSlideLabel() {
+    const label = document.getElementById('bg-slide-label');
+    const slides = document.querySelectorAll('.bg-slide');
+    if (!label || !slides.length) return;
+    const bgCfg = CFG.background || {};
+    const images = bgCfg.images || [];
+    const currentTitle = images[bgSlideIndex]?.title || `Theme ${bgSlideIndex + 1}`;
+    const statusIcon = bgIsPaused ? '⏸️' : '🌸';
+    label.textContent = `${statusIcon} ${bgSlideIndex + 1}/${slides.length}`;
+    label.title = `${currentTitle} (Click to ${bgIsPaused ? 'Resume' : 'Pause'})`;
+}
+
+
+// ==========================================
 // KEYBOARD SHORTCUTS
 // ==========================================
 
@@ -473,6 +564,9 @@ function applyConfig() {
 window.addEventListener('DOMContentLoaded', () => {
     // Apply configuration to HTML
     applyConfig();
+
+    // Initialize background slideshow
+    initBgSlideshow();
 
     // Pre-generate a few preview cards
     const previewContainer = document.getElementById('card-preview');

@@ -31,6 +31,34 @@ const BINGO_CONFIG = {
     },
 
     // ==========================================
+    // FESTIVE BACKGROUND SLIDESHOW
+    // Authentic Dashain imagery: Tika, Jamara, Dakshina & Linge Ping
+    // ==========================================
+    background: {
+        enabled: true,
+        autoPlay: true,
+        intervalSeconds: 8,
+        images: [
+            {
+                src: "assets/bg-tika-jamara.jpg",
+                title: "टीका, जमरा र दक्षिणा (Tika, Jamara & Dakshina Thali)"
+            },
+            {
+                src: "assets/bg-linge-ping.jpg",
+                title: "लिङ्गे पिङ र हिमाल (Linge Ping & Himalayan Village)"
+            },
+            {
+                src: "assets/bg-jamara-pot.jpg",
+                title: "जमराको गमला र दियो (Sacred Jamara & Oil Lamp)"
+            },
+            {
+                src: "assets/bg-tika-blessing.jpg",
+                title: "दशैंको टीका र आशीर्वाद (Dashain Tika Blessings by Elders)"
+            }
+        ]
+    },
+
+    // ==========================================
     // THEME COLORS (CSS custom properties)
     // Uncomment and change to override defaults
     // ==========================================
