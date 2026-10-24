@@ -222,7 +222,10 @@ function initBoard() {
     resetCaller();
 }
 
+let isCalling = false;
+
 function resetCaller() {
+    isCalling = false;
     calledNumbers = [];
     remainingNumbers = [];
     for (let i = 1; i <= 75; i++) {
@@ -241,11 +244,24 @@ function resetCaller() {
         letterEl.textContent = '';
         letterEl.className = 'current-letter';
     }
-    document.getElementById('current-number').textContent = '?';
+    const numEl = document.getElementById('current-number');
+    if (numEl) {
+        numEl.textContent = '?';
+        numEl.classList.remove('pop', 'celebrate-reveal', 'rolling');
+    }
     document.getElementById('current-label').textContent = 'Press to Start';
     document.getElementById('numbers-called').textContent = '0';
     document.getElementById('progress-fill').style.width = '0%';
     document.getElementById('call-history').innerHTML = '<span class="history-placeholder">Numbers will appear here...</span>';
+
+    const callBtn = document.getElementById('btn-call-number');
+    if (callBtn) {
+        callBtn.classList.remove('calling');
+        const callText = callBtn.querySelector('.call-text');
+        const callIcon = callBtn.querySelector('.call-icon');
+        if (callText) callText.textContent = 'Call Number';
+        if (callIcon) callIcon.textContent = '🔔';
+    }
 
     // Reset board colors
     document.querySelectorAll('.board-number').forEach(el => {
@@ -270,31 +286,77 @@ function getColumnClass(num) {
 }
 
 function callNumber() {
+    if (isCalling) return;
     if (remainingNumbers.length === 0) {
         document.getElementById('current-label').textContent = 'All numbers called! Game Over!';
         return;
     }
 
+    isCalling = true;
+    const callBtn = document.getElementById('btn-call-number');
+    const callText = callBtn ? callBtn.querySelector('.call-text') : null;
+    const callIcon = callBtn ? callBtn.querySelector('.call-icon') : null;
+    if (callBtn) callBtn.classList.add('calling');
+    if (callText) callText.textContent = 'Calling...';
+    if (callIcon) callIcon.textContent = '🎲';
+
+    const numEl = document.getElementById('current-number');
+    const letterEl = document.getElementById('current-letter');
+    const labelEl = document.getElementById('current-label');
+
+    // Start rolling suspense animation
+    numEl.classList.remove('pop', 'celebrate-reveal');
+    numEl.classList.add('rolling');
+    if (labelEl) labelEl.textContent = 'दशैंको भाग्य नम्बर छान्दै... 🎲';
+
+    let rollTicks = 0;
+    const maxTicks = 16; // ~1.4 seconds of exciting suspense
+    const rollInterval = setInterval(() => {
+        rollTicks++;
+        const randNum = remainingNumbers[Math.floor(Math.random() * remainingNumbers.length)] || Math.floor(Math.random() * 75) + 1;
+        const randLetter = getLetterForNumber(randNum);
+
+        numEl.textContent = randNum;
+        if (letterEl) {
+            letterEl.textContent = randLetter;
+            letterEl.className = `current-letter col-${randLetter.toLowerCase()}`;
+        }
+        playTickSound(rollTicks);
+
+        if (rollTicks >= maxTicks) {
+            clearInterval(rollInterval);
+            revealCalledNumber();
+        }
+    }, 85);
+}
+
+function revealCalledNumber() {
     const number = remainingNumbers.pop();
     calledNumbers.push(number);
     const letter = getLetterForNumber(number);
     const colClass = getColumnClass(number);
 
-    // Update big display
     const numEl = document.getElementById('current-number');
-    numEl.textContent = number;
-    numEl.classList.remove('pop');
-    void numEl.offsetWidth; // Force reflow
-    numEl.classList.add('pop');
-
     const letterEl = document.getElementById('current-letter');
+    const labelEl = document.getElementById('current-label');
+    const callBtn = document.getElementById('btn-call-number');
+    const callText = callBtn ? callBtn.querySelector('.call-text') : null;
+    const callIcon = callBtn ? callBtn.querySelector('.call-icon') : null;
+
+    numEl.classList.remove('rolling');
+    numEl.textContent = number;
+    void numEl.offsetWidth; // Force CSS reflow to re-trigger revealBurst animation
+    numEl.classList.add('celebrate-reveal');
+
     if (letterEl) {
         letterEl.textContent = letter;
         letterEl.className = `current-letter col-${letter.toLowerCase()}`;
     }
-    document.getElementById('current-label').textContent = `${letter}-${number}`;
+    if (labelEl) {
+        labelEl.textContent = `${letter} - ${number}`;
+    }
 
-    // Update board
+    // Update called board
     const boardEl = document.getElementById(`board-${number}`);
     if (boardEl) boardEl.classList.add('called');
 
@@ -304,7 +366,6 @@ function callNumber() {
 
     // Update history
     const history = document.getElementById('call-history');
-    // Remove placeholder
     const placeholder = history.querySelector('.history-placeholder');
     if (placeholder) placeholder.remove();
 
@@ -313,30 +374,68 @@ function callNumber() {
     historyItem.textContent = `${letter}-${number}`;
     history.insertBefore(historyItem, history.firstChild);
 
-    // Play a subtle click sound via Web Audio API
-    playCallSound();
+    // Audio & celebratory sparkle particles
+    playRevealSound();
+    triggerConfetti();
+
+    // Re-enable button
+    if (callBtn) callBtn.classList.remove('calling');
+    if (callText) callText.textContent = remainingNumbers.length === 0 ? 'All Numbers Called! 🏆' : 'Call Next Number';
+    if (callIcon) callIcon.textContent = remainingNumbers.length === 0 ? '🎉' : '🔔';
+    isCalling = false;
 }
 
-function playCallSound() {
+function playTickSound(tick) {
     try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = ctx.createOscillator();
-        const gainNode = ctx.createGain();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(360 + (tick * 30), ctx.currentTime);
+        gain.gain.setValueAtTime(0.06, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.04);
+    } catch (e) {}
+}
 
-        oscillator.connect(gainNode);
-        gainNode.connect(ctx.destination);
+function playRevealSound() {
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sine';
+            const startTime = ctx.currentTime + (idx * 0.06);
+            osc.frequency.setValueAtTime(freq, startTime);
+            gain.gain.setValueAtTime(0.18, startTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.5);
+            osc.start(startTime);
+            osc.stop(startTime + 0.5);
+        });
+    } catch (e) {}
+}
 
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(880, ctx.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.15);
-
-        gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
-
-        oscillator.start(ctx.currentTime);
-        oscillator.stop(ctx.currentTime + 0.2);
-    } catch (e) {
-        // Audio not supported, ignore
+function triggerConfetti() {
+    const container = document.getElementById('confetti-container');
+    if (!container) return;
+    container.innerHTML = '';
+    const colors = ['#FFD700', '#D32F2F', '#43A047', '#FB8C00', '#1E88E5', '#FFF'];
+    for (let i = 0; i < 28; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 60 + Math.random() * 110;
+        const tx = Math.cos(angle) * dist + 'px';
+        const ty = Math.sin(angle) * dist + 'px';
+        piece.style.setProperty('--tx', tx);
+        piece.style.setProperty('--ty', ty);
+        piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        container.appendChild(piece);
     }
 }
 
