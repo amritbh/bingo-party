@@ -705,6 +705,99 @@ function applyConfig() {
     }
 }
 
+// ==========================================
+// FLOATING DASHAIN MUSIC PLAYER
+// ==========================================
+const DASHAIN_PLAYLIST = [
+    {
+        id: 'R0qkiV5lLeM',
+        title: 'Evergreen Dashain Best Songs Collection (दशैको गीत सङ्गालो)',
+        artist: 'Sugam Pokharel, Muglan, Allare & more',
+        badge: '🌟 Evergreen'
+    },
+    {
+        id: '7Tf7W5d-2qM',
+        title: 'Dashain Tihar (दशैं तिहार)',
+        artist: 'Sugam Pokharel',
+        badge: '🎵 Hit'
+    },
+    {
+        id: '5_4G4c9vVvA',
+        title: 'Dashain Aayo (दशैं आयो खाउँला पिउँला)',
+        artist: 'Udit Narayan & Deepa Jha (Muglan)',
+        badge: '🎉 Classic'
+    },
+    {
+        id: 'l4Z8L-y6W14',
+        title: 'Rato Tika Nidharma (रातो टीका निधारमा)',
+        artist: 'Udit Narayan & Sushma Shrestha (Allare)',
+        badge: '✨ Superhit'
+    },
+    {
+        id: 'kFwN_7vHnfc',
+        title: 'Malshree Dhun (दशैं मंगल मालश्री धुन)',
+        artist: 'Traditional Sacred Instrumental',
+        badge: '🕉️ Dhun'
+    }
+];
+
+let currentTrackIndex = 0;
+
+function toggleMusicWidget() {
+    const widget = document.getElementById('dashain-music-widget');
+    if (!widget) return;
+    widget.classList.toggle('collapsed');
+}
+
+function playTrack(index) {
+    if (index < 0 || index >= DASHAIN_PLAYLIST.length) return;
+    currentTrackIndex = index;
+    const track = DASHAIN_PLAYLIST[index];
+    
+    const iframe = document.getElementById('dashain-yt-iframe');
+    const trackNameEl = document.getElementById('current-track-name');
+    const statusEl = document.getElementById('music-pill-status');
+    const widget = document.getElementById('dashain-music-widget');
+
+    if (iframe) {
+        iframe.src = `https://www.youtube-nocookie.com/embed/${track.id}?autoplay=1&enablejsapi=1`;
+    }
+    if (trackNameEl) {
+        trackNameEl.textContent = track.title;
+    }
+    if (statusEl) {
+        statusEl.textContent = 'Playing 🎶';
+    }
+    if (widget) {
+        widget.classList.add('playing');
+    }
+
+    // Update active class in playlist
+    document.querySelectorAll('.playlist-item').forEach((item, idx) => {
+        if (idx === index) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+}
+
+function initMusicPlayer() {
+    const container = document.getElementById('music-playlist-items');
+    if (!container) return;
+
+    container.innerHTML = DASHAIN_PLAYLIST.map((track, idx) => `
+        <div class="playlist-item ${idx === 0 ? 'active' : ''}" onclick="playTrack(${idx})" title="Play ${track.title}">
+            <span class="playlist-item-icon">${idx === 0 ? '▶' : '🎵'}</span>
+            <div class="playlist-item-info">
+                <span class="playlist-item-title">${track.title}</span>
+                <span class="playlist-item-artist">${track.artist}</span>
+            </div>
+            <span class="playlist-badge" style="font-size: 0.65rem; background: rgba(255,215,0,0.15); border: 1px solid rgba(255,215,0,0.3); padding: 2px 6px; border-radius: 4px; color: #FFE082;">${track.badge}</span>
+        </div>
+    `).join('');
+}
+
 // Generate cards and initialize on load
 window.addEventListener('DOMContentLoaded', () => {
     // Apply configuration to HTML
@@ -718,4 +811,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Load ashirbads
     loadAshirbads();
+
+    // Initialize floating music player
+    initMusicPlayer();
 });

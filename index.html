@@ -308,6 +308,69 @@
         <!-- All cards for printing populated dynamically -->
     </div>
 
+    <!-- ============================================== -->
+    <!-- FLOATING DASHAIN MUSIC PLAYER (दशैं साङ्गीतिक सङ्गालो) -->
+    <!-- ============================================== -->
+    <div id="dashain-music-widget" class="music-widget collapsed" aria-label="Dashain Music Player">
+        <!-- Floating Pill / Disc Button -->
+        <button id="music-toggle-btn" class="music-toggle-btn" onclick="toggleMusicWidget()" title="दशैंको धुन र गीतहरू सुन्नुहोस् (Listen to Dashain Songs)">
+            <div class="music-disc-wrap">
+                <span class="music-disc-icon">📻</span>
+                <div class="music-equalizer-bars" id="music-equalizer">
+                    <span class="bar bar-1"></span>
+                    <span class="bar bar-2"></span>
+                    <span class="bar bar-3"></span>
+                </div>
+            </div>
+            <div class="music-pill-label">
+                <span class="music-pill-title">दशैं गीत सङ्गालो</span>
+                <span class="music-pill-status" id="music-pill-status">Play Songs 🎵</span>
+            </div>
+        </button>
+
+        <!-- Expanded Music Panel -->
+        <div id="music-player-panel" class="music-player-panel">
+            <div class="music-panel-header">
+                <div class="music-title-wrap">
+                    <span class="music-header-icon">🪕</span>
+                    <div>
+                        <h4 class="music-panel-title">दशैं साङ्गीतिक सङ्गालो</h4>
+                        <span class="music-panel-sub">Dashain Songs & Malshree Dhun</span>
+                    </div>
+                </div>
+                <button class="music-btn-close" onclick="toggleMusicWidget()" title="Minimize Player" aria-label="Close">✕</button>
+            </div>
+
+            <!-- YouTube Embedded Iframe Viewport -->
+            <div class="music-iframe-wrapper">
+                <iframe id="dashain-yt-iframe" 
+                        src="https://www.youtube-nocookie.com/embed/R0qkiV5lLeM?enablejsapi=1" 
+                        title="Evergreen Dashain Best Songs Collection" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+
+            <!-- Active Track Display -->
+            <div class="music-now-playing">
+                <span class="now-playing-tag">बजिरहेको:</span>
+                <div class="marquee-text-container">
+                    <span class="marquee-track-name" id="current-track-name">Evergreen Dashain Best Songs Collection (दशैको गीत सङ्गालो)</span>
+                </div>
+            </div>
+
+            <!-- Curated Playlist Section -->
+            <div class="music-playlist-section">
+                <div class="playlist-header">
+                    <span>लोकप्रिय दशैं गीतहरू (Select Song):</span>
+                </div>
+                <div class="playlist-items" id="music-playlist-items">
+                    <!-- Populated dynamically via app.js -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="config.js"></script>
     <script src="app.js"></script>
 </body>
