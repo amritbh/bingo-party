@@ -526,6 +526,30 @@ body {
     color: #000000 !important;
 }
 
+.btn-jamara {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-md) var(--space-xl);
+    background: linear-gradient(135deg, var(--jamara-green), var(--jamara-green-dark));
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-md);
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+}
+
+.btn-jamara:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(46, 125, 50, 0.7);
+    color: #FFFFFF !important;
+}
+
 /* ========================================
    FEATURES SECTION
    ======================================== */
@@ -656,6 +680,8 @@ body {
 .control-actions {
     display: flex;
     gap: var(--space-sm);
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .card-preview-info {
@@ -1319,7 +1345,77 @@ body {
     .print-page.cards-6 {
         grid-template-columns: repeat(2, 1fr) !important;
         grid-template-rows: repeat(3, 1fr) !important;
-        gap: 8px !important;
+        gap: 3mm !important;
+        padding: 0 !important;
+        height: 262mm !important;
+        max-height: 262mm !important;
+        box-sizing: border-box !important;
+    }
+
+    .print-page.cards-6 .bingo-card {
+        border-width: 1.5px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        max-height: 84mm !important;
+        box-sizing: border-box !important;
+    }
+
+    .print-page.cards-6 .card-top-bar {
+        padding: 2px 6px !important;
+    }
+
+    .print-page.cards-6 .card-top-bar .card-title {
+        font-size: 0.75rem !important;
+    }
+
+    .print-page.cards-6 .card-top-bar .card-number {
+        font-size: 0.65rem !important;
+        padding: 1px 4px !important;
+    }
+
+    .print-page.cards-6 .card-body {
+        padding: 2px !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+
+    .print-page.cards-6 .bingo-header-row {
+        gap: 1.5px !important;
+        margin-bottom: 1.5px !important;
+    }
+
+    .print-page.cards-6 .bingo-header-cell {
+        font-size: 0.78rem !important;
+        padding: 1.5px 0 !important;
+    }
+
+    .print-page.cards-6 .bingo-grid {
+        gap: 1.5px !important;
+    }
+
+    .print-page.cards-6 .bingo-cell {
+        aspect-ratio: auto !important;
+        height: 10mm !important;
+        min-height: 0 !important;
+        padding: 1px !important;
+        font-size: 0.85rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .print-page.cards-6 .bingo-cell.free-space {
+        font-size: 0.55rem !important;
+        line-height: 1.0 !important;
+        padding: 1px !important;
+    }
+
+    .print-page.cards-6 .card-bottom-bar {
+        padding: 2px 4px !important;
+        font-size: 0.58rem !important;
     }
 
     .bingo-card {
