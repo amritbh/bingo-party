@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashain Bingo - दशैं बिन्गो</title>
+    <meta name="description" content="Dashain themed Bingo game for Nepali community celebrations">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Landing / Navigation -->
+    <div id="app">
+        <nav id="main-nav">
+            <div class="nav-brand">
+                <span class="nav-icon">🪷</span>
+                <span class="nav-title">दशैं बिन्गो</span>
+            </div>
+            <div class="nav-links">
+                <button class="nav-btn active" data-page="home" id="nav-home">Home</button>
+                <button class="nav-btn" data-page="cards" id="nav-cards">Print Cards</button>
+                <button class="nav-btn" data-page="caller" id="nav-caller">Number Caller</button>
+                <button class="nav-btn" data-page="ashirbad" id="nav-ashirbad">Ashirbad</button>
+            </div>
+        </nav>
+
+        <!-- HOME PAGE -->
+        <section id="page-home" class="page active">
+            <div class="hero">
+                <div class="hero-decoration">
+                    <div class="jamara-left"></div>
+                    <div class="jamara-right"></div>
+                </div>
+                <div class="hero-content">
+                    <div class="tika-dot"></div>
+                    <h1>दशैं बिन्गो</h1>
+                    <h2>Dashain Bingo</h2>
+                    <p class="hero-subtitle">Celebrate the joy of Vijaya Dashami with family & community</p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <span class="stat-number">200</span>
+                            <span class="stat-label">Bingo Cards</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">50</span>
+                            <span class="stat-label">Players</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">75</span>
+                            <span class="stat-label">Numbers</span>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn-primary" onclick="showPage('cards')" id="btn-start-cards">
+                            🎴 Generate & Print Cards
+                        </button>
+                        <button class="btn-secondary" onclick="showPage('caller')" id="btn-start-caller">
+                            🎯 Start Number Caller
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="features-section">
+                <h3>How It Works</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🖨️</div>
+                        <h4>Step 1: Print Cards</h4>
+                        <p>Generate 200 unique Dashain-themed bingo cards. Print them on color paper for the best festive look!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎫</div>
+                        <h4>Step 2: Distribute</h4>
+                        <p>Give 4 cards to each of the 50 players. Each card has unique numbers!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📺</div>
+                        <h4>Step 3: Call Numbers</h4>
+                        <p>Use the PC/projector to display the random number caller. Works on iPhone too!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h4>Step 4: Win!</h4>
+                        <p>First to complete a line shouts "BINGO!" and receives Dashain Ashirbad!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CARDS PAGE -->
+        <section id="page-cards" class="page">
+            <div class="page-header">
+                <h2>🎴 Bingo Card Generator</h2>
+                <p>Generate and print 200 unique Dashain-themed bingo cards</p>
+            </div>
+            <div class="card-controls">
+                <div class="control-group">
+                    <label for="cards-per-page">Cards per page:</label>
+                    <select id="cards-per-page">
+                        <option value="1">1 (Large - for display)</option>
+                        <option value="2">2 (Medium)</option>
+                        <option value="4" selected>4 (Recommended)</option>
+                        <option value="6">6 (Small - save paper)</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="card-range-start">Card range:</label>
+                    <div class="range-inputs">
+                        <input type="number" id="card-range-start" min="1" max="200" value="1" placeholder="From">
+                        <span>to</span>
+                        <input type="number" id="card-range-end" min="1" max="200" value="200" placeholder="To">
+                    </div>
+                </div>
+                <div class="control-actions">
+                    <button class="btn-primary" onclick="generateCards()" id="btn-generate-cards">
+                        ✨ Generate Cards
+                    </button>
+                    <button class="btn-secondary" onclick="printCards()" id="btn-print-cards">
+                        🖨️ Print Cards
+                    </button>
+                </div>
+            </div>
+            <div class="card-preview-info">
+                <p>Preview (showing first few cards):</p>
+            </div>
+            <div id="card-preview" class="card-preview-grid">
+                <!-- Cards will be generated here -->
+            </div>
+            <!-- Hidden print area -->
+            <div id="print-area" class="print-area">
+                <!-- All cards for printing -->
+            </div>
+        </section>
+
+        <!-- CALLER PAGE -->
+        <section id="page-caller" class="page">
+            <div class="caller-container">
+                <div class="caller-header">
+                    <h2>🎯 Dashain Bingo Caller</h2>
+                    <p>Random number generator for the game</p>
+                </div>
+                <div class="caller-display">
+                    <div class="current-number-section">
+                        <div class="current-letter" id="current-letter">🪷</div>
+                        <div class="current-number" id="current-number">?</div>
+                        <div class="current-label" id="current-label">Press to Start</div>
+                    </div>
+                    <div class="caller-actions">
+                        <button class="btn-call" onclick="callNumber()" id="btn-call-number">
+                            <span class="call-text">Call Number</span>
+                            <span class="call-icon">🔔</span>
+                        </button>
+                        <button class="btn-reset" onclick="resetCaller()" id="btn-reset-caller">
+                            🔄 New Game
+                        </button>
+                    </div>
+                    <div class="caller-progress">
+                        <span id="numbers-called">0</span> / <span>75</span> numbers called
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="called-board">
+                    <h3>Called Numbers Board</h3>
+                    <div class="board-columns">
+                        <div class="board-column">
+                            <div class="column-header column-b">B</div>
+                            <div class="column-numbers" id="col-b"></div>
+                        </div>
+                        <div class="board-column">
+                            <div class="column-header column-i">I</div>
+                            <div class="column-numbers" id="col-i"></div>
+                        </div>
+                        <div class="board-column">
+                            <div class="column-header column-n">N</div>
+                            <div class="column-numbers" id="col-n"></div>
+                        </div>
+                        <div class="board-column">
+                            <div class="column-header column-g">G</div>
+                            <div class="column-numbers" id="col-g"></div>
+                        </div>
+                        <div class="board-column">
+                            <div class="column-header column-o">O</div>
+                            <div class="column-numbers" id="col-o"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="history-section">
+                    <h3>Call History</h3>
+                    <div id="call-history" class="call-history">
+                        <span class="history-placeholder">Numbers will appear here...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ASHIRBAD PAGE -->
+        <section id="page-ashirbad" class="page">
+            <div class="ashirbad-container">
+                <div class="ashirbad-header">
+                    <div class="tika-dot-small"></div>
+                    <h2>दशैंको शुभकामना</h2>
+                    <h3>Dashain Ashirbad</h3>
+                    <p>Blessings for the winners and all players</p>
+                </div>
+                <div class="ashirbad-section">
+                    <h3>🌺 For Daughters (छोरीहरूको लागि)</h3>
+                    <div class="ashirbad-cards" id="ashirbad-girls">
+                        <!-- Generated dynamically -->
+                    </div>
+                </div>
+                <div class="ashirbad-section">
+                    <h3>🌿 For Sons (छोराहरूको लागि)</h3>
+                    <div class="ashirbad-cards" id="ashirbad-boys">
+                        <!-- Generated dynamically -->
+                    </div>
+                </div>
+                <div class="ashirbad-section">
+                    <h3>🙏 For Everyone (सबैका लागि)</h3>
+                    <div class="ashirbad-cards" id="ashirbad-all">
+                        <!-- Generated dynamically -->
+                    </div>
+                </div>
+                <div class="ashirbad-actions">
+                    <button class="btn-primary" onclick="randomAshirbad()" id="btn-random-ashirbad">
+                        🎲 Random Ashirbad for Winner
+                    </button>
+                </div>
+                <div id="winner-ashirbad" class="winner-ashirbad hidden">
+                    <!-- Random ashirbad display -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
