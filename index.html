@@ -153,68 +153,129 @@
 
         <!-- CALLER PAGE -->
         <section id="page-caller" class="page">
-            <div class="caller-container">
-                <div class="caller-header">
-                    <h2>🎯 Dashain Bingo Caller</h2>
-                    <p>Random number generator for the game</p>
+            <div class="caller-page-wrapper">
+                <!-- LEFT MANTRA: PURUSH TIKA ASHIRBAD (आयुर्द्रोणसुते...) -->
+                <aside class="mantra-banner mantra-left" aria-label="पुरुष टीका आशिर्वाद मन्त्र">
+                    <div class="mantra-card">
+                        <div class="mantra-header-tag">
+                            <span class="mantra-icon">🕉️</span>
+                            <span class="mantra-label">पुरुष टीका मन्त्र</span>
+                        </div>
+                        <h4 class="mantra-heading">दीर्घायु, यश र विजय आशिर्वाद</h4>
+                        <div class="mantra-ornament">
+                            <span class="ornament-line"></span>
+                            <span class="ornament-symbol">✦ ॐ ✦</span>
+                            <span class="ornament-line"></span>
+                        </div>
+                        <div class="mantra-verses">
+                            <p class="verse-line"><span class="verse-lead">आयुर्द्रोणसुते</span> श्रियो दशरथे शत्रुक्षयो राघवे।</p>
+                            <p class="verse-line"><span class="verse-lead">ऐश्वर्यं नहुषे</span> गतिश्च पवने मानञ्च दुर्योधने॥</p>
+                            <p class="verse-line"><span class="verse-lead">शौर्यं शान्तनवे</span> बलं हलधरे सत्यञ्च कुन्तीसुते।</p>
+                            <p class="verse-line"><span class="verse-lead">विज्ञानं विदुरे</span> भवतु भवतां कीर्तिश्च नारायणे॥</p>
+                        </div>
+                        <div class="mantra-summary">
+                            <span class="summary-icon">🌺</span>
+                            <p>अश्वत्थामाको जस्तो आयु, दशरथको ऐश्वर्य, रामको शत्रुनाश, पवनको गतिशीलता र नारायणको कीर्ति प्राप्त होस्!</p>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- CENTER CALLER CONTAINER -->
+                <div class="caller-container">
+                    <div class="caller-header">
+                        <h2>🎯 Dashain Bingo Caller</h2>
+                        <p>Random number generator for the game</p>
+                    </div>
+                    <div class="caller-display">
+                        <div class="current-number-section">
+                            <div class="caller-ping-wrap" title="दशैंको लिङ्गे पिङ र चङ्गा (Dashain Linge Ping & Kites)">
+                                <img src="assets/linge-ping-animated.svg" alt="Dashain Linge Ping and Kites" class="caller-ping-doodle" id="caller-ping-img">
+                                <div class="confetti-container" id="confetti-container"></div>
+                            </div>
+                            <div class="current-letter" id="current-letter"></div>
+                            <div class="current-number" id="current-number">?</div>
+                            <div class="current-label" id="current-label">Press to Start</div>
+                        </div>
+                        <div class="caller-actions">
+                            <button class="btn-call btn-call-dashain" onclick="callNumber()" id="btn-call-number" title="दशैंको नयाँ नम्बर बोलाउनुहोस्">
+                                <span class="btn-dashain-decor decor-left">🪔</span>
+                                <div class="btn-call-content">
+                                    <span class="call-text-primary">नम्बर बोलाउनुहोस्</span>
+                                    <span class="call-text-sub">Call Bingo Number</span>
+                                </div>
+                                <span class="call-icon">🔔</span>
+                                <span class="btn-dashain-decor decor-right">🌿</span>
+                                <div class="btn-shine"></div>
+                            </button>
+                            <button class="btn-reset" onclick="resetCaller()" id="btn-reset-caller">
+                                🔄 New Game
+                            </button>
+                        </div>
+                        <div class="caller-progress">
+                            <span id="numbers-called">0</span> / <span>75</span> numbers called
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="called-board">
+                        <h3>Called Numbers Board</h3>
+                        <div class="board-columns">
+                            <div class="board-column">
+                                <div class="column-header column-b">B</div>
+                                <div class="column-numbers" id="col-b"></div>
+                            </div>
+                            <div class="board-column">
+                                <div class="column-header column-i">I</div>
+                                <div class="column-numbers" id="col-i"></div>
+                            </div>
+                            <div class="board-column">
+                                <div class="column-header column-n">N</div>
+                                <div class="column-numbers" id="col-n"></div>
+                            </div>
+                            <div class="board-column">
+                                <div class="column-header column-g">G</div>
+                                <div class="column-numbers" id="col-g"></div>
+                            </div>
+                            <div class="board-column">
+                                <div class="column-header column-o">O</div>
+                                <div class="column-numbers" id="col-o"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="history-section">
+                        <h3>Call History</h3>
+                        <div id="call-history" class="call-history">
+                            <span class="history-placeholder">Numbers will appear here...</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="caller-display">
-                    <div class="current-number-section">
-                        <div class="caller-ping-wrap" title="दशैंको लिङ्गे पिङ र चङ्गा (Dashain Linge Ping & Kites)">
-                            <img src="assets/linge-ping-animated.svg" alt="Dashain Linge Ping and Kites" class="caller-ping-doodle" id="caller-ping-img">
-                            <div class="confetti-container" id="confetti-container"></div>
+
+                <!-- RIGHT MANTRA: NARI TIKA ASHIRBAD (दुर्गा स्तोत्र मन्त्र) -->
+                <aside class="mantra-banner mantra-right" aria-label="नारी टीका आशिर्वाद मन्त्र">
+                    <div class="mantra-card">
+                        <div class="mantra-header-tag">
+                            <span class="mantra-icon">🔱</span>
+                            <span class="mantra-label">नारी टीका मन्त्र</span>
                         </div>
-                        <div class="current-letter" id="current-letter"></div>
-                        <div class="current-number" id="current-number">?</div>
-                        <div class="current-label" id="current-label">Press to Start</div>
-                    </div>
-                    <div class="caller-actions">
-                        <button class="btn-call" onclick="callNumber()" id="btn-call-number">
-                            <span class="call-text">Call Number</span>
-                            <span class="call-icon">🔔</span>
-                        </button>
-                        <button class="btn-reset" onclick="resetCaller()" id="btn-reset-caller">
-                            🔄 New Game
-                        </button>
-                    </div>
-                    <div class="caller-progress">
-                        <span id="numbers-called">0</span> / <span>75</span> numbers called
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progress-fill"></div>
+                        <h4 class="mantra-heading">शक्ति, सौभाग्य र सिद्धि आशिर्वाद</h4>
+                        <div class="mantra-ornament">
+                            <span class="ornament-line"></span>
+                            <span class="ornament-symbol">✦ ॐ ✦</span>
+                            <span class="ornament-line"></span>
                         </div>
-                    </div>
-                </div>
-                <div class="called-board">
-                    <h3>Called Numbers Board</h3>
-                    <div class="board-columns">
-                        <div class="board-column">
-                            <div class="column-header column-b">B</div>
-                            <div class="column-numbers" id="col-b"></div>
+                        <div class="mantra-verses">
+                            <p class="verse-line"><span class="verse-lead">जयन्ती मङ्गला काली</span> भद्रकाली कपालिनी।</p>
+                            <p class="verse-line"><span class="verse-lead">दुर्गा क्षमा शिवा</span> धात्री स्वाहा स्वधा नमोऽस्तु ते॥</p>
+                            <p class="verse-line"><span class="verse-lead">सर्वमङ्गलमङ्गल्ये</span> शिवे सर्वार्थसाधिके।</p>
+                            <p class="verse-line"><span class="verse-lead">शरण्ये त्र्यम्बके</span> गौरि नारायणि नमोऽस्तु ते॥</p>
                         </div>
-                        <div class="board-column">
-                            <div class="column-header column-i">I</div>
-                            <div class="column-numbers" id="col-i"></div>
-                        </div>
-                        <div class="board-column">
-                            <div class="column-header column-n">N</div>
-                            <div class="column-numbers" id="col-n"></div>
-                        </div>
-                        <div class="board-column">
-                            <div class="column-header column-g">G</div>
-                            <div class="column-numbers" id="col-g"></div>
-                        </div>
-                        <div class="board-column">
-                            <div class="column-header column-o">O</div>
-                            <div class="column-numbers" id="col-o"></div>
+                        <div class="mantra-summary">
+                            <span class="summary-icon">🌺</span>
+                            <p>सर्वविजयी दुर्गा भवानीको कृपाले जीवनमा सुख, शान्ति, शक्ति, आरोग्य र सौभाग्य प्राप्त होस्!</p>
                         </div>
                     </div>
-                </div>
-                <div class="history-section">
-                    <h3>Call History</h3>
-                    <div id="call-history" class="call-history">
-                        <span class="history-placeholder">Numbers will appear here...</span>
-                    </div>
-                </div>
+                </aside>
             </div>
         </section>
 

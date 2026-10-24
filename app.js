@@ -257,10 +257,12 @@ function resetCaller() {
     const callBtn = document.getElementById('btn-call-number');
     if (callBtn) {
         callBtn.classList.remove('calling');
-        const callText = callBtn.querySelector('.call-text');
-        const callIcon = callBtn.querySelector('.call-icon');
-        if (callText) callText.textContent = 'Call Number';
-        if (callIcon) callIcon.textContent = '🔔';
+        const primary = callBtn.querySelector('.call-text-primary') || callBtn.querySelector('.call-text');
+        const sub = callBtn.querySelector('.call-text-sub');
+        const icon = callBtn.querySelector('.call-icon');
+        if (primary) primary.textContent = 'नम्बर बोलाउनुहोस्';
+        if (sub) sub.textContent = 'Call Bingo Number';
+        if (icon) icon.textContent = '🔔';
     }
 
     // Reset board colors
@@ -294,10 +296,12 @@ function callNumber() {
 
     isCalling = true;
     const callBtn = document.getElementById('btn-call-number');
-    const callText = callBtn ? callBtn.querySelector('.call-text') : null;
+    const primary = callBtn ? (callBtn.querySelector('.call-text-primary') || callBtn.querySelector('.call-text')) : null;
+    const sub = callBtn ? callBtn.querySelector('.call-text-sub') : null;
     const callIcon = callBtn ? callBtn.querySelector('.call-icon') : null;
     if (callBtn) callBtn.classList.add('calling');
-    if (callText) callText.textContent = 'Calling...';
+    if (primary) primary.textContent = 'छान्दैछ...';
+    if (sub) sub.textContent = 'Rolling Number...';
     if (callIcon) callIcon.textContent = '🎲';
 
     const numEl = document.getElementById('current-number');
@@ -340,7 +344,8 @@ function revealCalledNumber() {
     const letterEl = document.getElementById('current-letter');
     const labelEl = document.getElementById('current-label');
     const callBtn = document.getElementById('btn-call-number');
-    const callText = callBtn ? callBtn.querySelector('.call-text') : null;
+    const primary = callBtn ? (callBtn.querySelector('.call-text-primary') || callBtn.querySelector('.call-text')) : null;
+    const sub = callBtn ? callBtn.querySelector('.call-text-sub') : null;
     const callIcon = callBtn ? callBtn.querySelector('.call-icon') : null;
 
     numEl.classList.remove('rolling');
@@ -378,10 +383,24 @@ function revealCalledNumber() {
     playRevealSound();
     triggerConfetti();
 
+    // Pulse Sanskrit mantra cards with divine blessing
+    document.querySelectorAll('.mantra-card').forEach(card => {
+        card.classList.remove('blessing-pulse');
+        void card.offsetWidth;
+        card.classList.add('blessing-pulse');
+    });
+
     // Re-enable button
     if (callBtn) callBtn.classList.remove('calling');
-    if (callText) callText.textContent = remainingNumbers.length === 0 ? 'All Numbers Called! 🏆' : 'Call Next Number';
-    if (callIcon) callIcon.textContent = remainingNumbers.length === 0 ? '🎉' : '🔔';
+    if (remainingNumbers.length === 0) {
+        if (primary) primary.textContent = 'सबै बोलाइयो! 🏆';
+        if (sub) sub.textContent = 'All Numbers Called';
+        if (callIcon) callIcon.textContent = '🎉';
+    } else {
+        if (primary) primary.textContent = 'अर्को नम्बर बोलाउनुहोस्';
+        if (sub) sub.textContent = 'Call Next Number';
+        if (callIcon) callIcon.textContent = '🔔';
+    }
     isCalling = false;
 }
 
