@@ -15,7 +15,8 @@ const BINGO_CONFIG = {
         title: "दशैं बिन्गो",             // Main title (can use any language)
         subtitle: "Dashain Bingo",         // Subtitle / English name
         tagline: "Celebrate the joy of Vijaya Dashami with family & community",
-        navIcon: "🪷",                     // Emoji shown in navbar
+        navLogo: "assets/tika_jamara_logo.png", // Authentic Tika & Jamara logo
+        navIcon: "🪷",                     // Emoji fallback
         totalCards: 200,                   // Total bingo cards to generate
         totalPlayers: 50,                  // Number of players
     },

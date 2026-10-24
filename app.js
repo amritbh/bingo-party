@@ -516,9 +516,14 @@ function applyConfig() {
     const ashirbadCfg = CFG.ashirbadPage || {};
 
     // Update nav brand
+    const navLogo = document.getElementById('nav-logo');
     const navIcon = document.querySelector('.nav-icon');
     const navTitle = document.querySelector('.nav-title');
-    if (navIcon && event.navIcon) navIcon.textContent = event.navIcon;
+    if (navLogo && event.navLogo) {
+        navLogo.src = event.navLogo;
+    } else if (navIcon && event.navIcon) {
+        navIcon.textContent = event.navIcon;
+    }
     if (navTitle && event.title) navTitle.textContent = event.title;
 
     // Update hero
