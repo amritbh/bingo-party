@@ -236,7 +236,11 @@ function resetCaller() {
     }
 
     // Reset display
-    document.getElementById('current-letter').textContent = '🪷';
+    const letterEl = document.getElementById('current-letter');
+    if (letterEl) {
+        letterEl.textContent = '';
+        letterEl.className = 'current-letter';
+    }
     document.getElementById('current-number').textContent = '?';
     document.getElementById('current-label').textContent = 'Press to Start';
     document.getElementById('numbers-called').textContent = '0';
@@ -283,7 +287,11 @@ function callNumber() {
     void numEl.offsetWidth; // Force reflow
     numEl.classList.add('pop');
 
-    document.getElementById('current-letter').textContent = letter;
+    const letterEl = document.getElementById('current-letter');
+    if (letterEl) {
+        letterEl.textContent = letter;
+        letterEl.className = `current-letter col-${letter.toLowerCase()}`;
+    }
     document.getElementById('current-label').textContent = `${letter}-${number}`;
 
     // Update board
