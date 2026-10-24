@@ -127,12 +127,15 @@
                     </div>
                 </div>
                 <div class="control-actions">
-                    <button class="btn-primary" onclick="generateCards()" id="btn-generate-cards">
-                        ✨ Generate Cards
+                    <button class="btn-secondary" onclick="generateCards()" id="btn-generate-cards">
+                        ✨ Generate
                     </button>
-                    <button class="btn-secondary" onclick="printCards()" id="btn-print-cards">
-                        🖨️ Print Cards
+                    <button class="btn-primary" onclick="printCards()" id="btn-print-cards">
+                        🖨️ Print / Save as PDF
                     </button>
+                    <a href="dashain-bingo-200-cards.pdf" download="dashain-bingo-200-cards.pdf" class="btn-gold" id="btn-download-pdf" title="Download pre-generated 200 cards PDF">
+                        📥 Download 200 Cards PDF
+                    </a>
                 </div>
             </div>
             <div class="card-preview-info">
@@ -140,10 +143,6 @@
             </div>
             <div id="card-preview" class="card-preview-grid">
                 <!-- Cards will be generated here -->
-            </div>
-            <!-- Hidden print area -->
-            <div id="print-area" class="print-area">
-                <!-- All cards for printing -->
             </div>
         </section>
 
@@ -232,6 +231,11 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- Hidden print area directly under body (never hidden by #app or .page) -->
+    <div id="print-area" class="print-area" aria-hidden="true">
+        <!-- All cards for printing populated dynamically -->
     </div>
 
     <script src="config.js"></script>

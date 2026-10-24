@@ -466,6 +466,30 @@ body {
     box-shadow: var(--shadow-glow-gold);
 }
 
+.btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-md) var(--space-xl);
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: #1a0a0a !important;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-md);
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-glow-gold);
+}
+
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 25px rgba(255, 179, 0, 0.6);
+    color: #000000 !important;
+}
+
 /* ========================================
    FEATURES SECTION
    ======================================== */
@@ -1185,11 +1209,22 @@ body {
 }
 
 @media print {
-    body {
-        background: white !important;
-        color: black !important;
+    @page {
+        size: letter portrait;
+        margin: 8mm;
     }
 
+    html, body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+    }
+
+    #app,
     #main-nav,
     .page,
     .card-controls,
@@ -1200,61 +1235,164 @@ body {
         display: none !important;
     }
 
+    #print-area,
     .print-area {
         display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .print-page {
-        page-break-after: always;
-        display: grid;
-        gap: 10px;
-        padding: 10px;
-        height: 100vh;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        display: grid !important;
+        gap: 12px !important;
+        padding: 4px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        min-height: auto !important;
+        height: auto !important;
+    }
+
+    .print-page:last-child {
+        page-break-after: auto !important;
+        break-after: auto !important;
     }
 
     .print-page.cards-1 {
-        grid-template-columns: 1fr;
-        place-items: center;
+        grid-template-columns: 1fr !important;
+        max-width: 480px;
+        margin: 20px auto;
     }
 
     .print-page.cards-2 {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 1fr 1fr !important;
+        gap: 16px !important;
     }
 
     .print-page.cards-4 {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+        gap: 12px !important;
     }
 
     .print-page.cards-6 {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(3, 1fr) !important;
+        gap: 8px !important;
     }
 
     .bingo-card {
-        border: 2px solid #ccc;
-        box-shadow: none;
+        border: 2px solid #222 !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        background: #FFFDF8 !important;
+        color: #111111 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        overflow: hidden !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    .bingo-card * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
     }
 
     .bingo-card .card-top-bar {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        background: linear-gradient(135deg, #D32F2F, #B71C1C) !important;
+        color: #FFFFFF !important;
+        padding: 6px 12px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .bingo-card .card-top-bar .card-title {
+        color: #FFFFFF !important;
+        font-weight: 800 !important;
+        font-size: 0.95rem !important;
+    }
+
+    .bingo-card .card-top-bar .card-number {
+        background: rgba(255, 255, 255, 0.25) !important;
+        color: #FFFFFF !important;
+        padding: 2px 8px !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
     }
 
     .bingo-card .card-bottom-bar {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        background: #2E7D32 !important;
+        color: #FFFFFF !important;
+        padding: 4px 8px !important;
+        text-align: center !important;
+        font-size: 0.72rem !important;
+        font-weight: 700 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .bingo-header-row {
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 2px !important;
+        margin-bottom: 2px !important;
     }
 
     .bingo-header-cell {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        text-align: center !important;
+        font-weight: 900 !important;
+        font-size: 1.1rem !important;
+        padding: 4px !important;
+        border-radius: 4px !important;
+        color: #FFFFFF !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .bingo-header-cell:nth-child(1) { background: #E53935 !important; }
+    .bingo-header-cell:nth-child(2) { background: #FB8C00 !important; }
+    .bingo-header-cell:nth-child(3) { background: #FDD835 !important; color: #111 !important; }
+    .bingo-header-cell:nth-child(4) { background: #43A047 !important; }
+    .bingo-header-cell:nth-child(5) { background: #1E88E5 !important; }
+
+    .bingo-grid {
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 2px !important;
+    }
+
+    .bingo-cell {
+        background: #FFFFFF !important;
+        color: #111111 !important;
+        border: 1px solid #D6D6D6 !important;
+        border-radius: 3px !important;
+        text-align: center !important;
+        padding: 8px 4px !important;
+        font-weight: 800 !important;
+        font-size: 1.05rem !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 
     .bingo-cell.free-space {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        background: #FFF3E0 !important;
+        color: #C62828 !important;
+        font-weight: 900 !important;
+        font-size: 0.8rem !important;
+        border: 1px dashed #D32F2F !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 }
 

@@ -140,21 +140,28 @@ function createCardHTML(cardId) {
 }
 
 function generateCards() {
-    const start = parseInt(document.getElementById('card-range-start').value) || 1;
-    const end = parseInt(document.getElementById('card-range-end').value) || 200;
-    const cardsPerPage = parseInt(document.getElementById('cards-per-page').value) || 4;
+    const startInput = document.getElementById('card-range-start');
+    const endInput = document.getElementById('card-range-end');
+    const perPageInput = document.getElementById('cards-per-page');
+
+    const start = startInput ? (parseInt(startInput.value) || 1) : 1;
+    const end = endInput ? (parseInt(endInput.value) || 200) : 200;
+    const cardsPerPage = perPageInput ? (parseInt(perPageInput.value) || 4) : 4;
 
     // Preview: show first 8 cards
     const previewContainer = document.getElementById('card-preview');
-    const previewEnd = Math.min(start + 7, end);
-    let previewHTML = '';
-    for (let i = start; i <= previewEnd; i++) {
-        previewHTML += createCardHTML(i);
+    if (previewContainer) {
+        const previewEnd = Math.min(start + 7, end);
+        let previewHTML = '';
+        for (let i = start; i <= previewEnd; i++) {
+            previewHTML += createCardHTML(i);
+        }
+        previewContainer.innerHTML = previewHTML;
     }
-    previewContainer.innerHTML = previewHTML;
 
     // Print area: all cards arranged in pages
     const printArea = document.getElementById('print-area');
+    if (!printArea) return;
     let printHTML = '';
     let pageCards = [];
 
@@ -171,9 +178,15 @@ function generateCards() {
 }
 
 function printCards() {
-    generateCards(); // Ensure print area is populated
-    window.print();
+    generateCards();
+    setTimeout(() => {
+        window.print();
+    }, 150);
 }
+
+window.addEventListener('beforeprint', () => {
+    generateCards();
+});
 
 
 // ==========================================
@@ -560,7 +573,7 @@ function applyConfig() {
     }
 }
 
-// Generate preview cards on load
+// Generate cards and initialize on load
 window.addEventListener('DOMContentLoaded', () => {
     // Apply configuration to HTML
     applyConfig();
@@ -568,13 +581,8 @@ window.addEventListener('DOMContentLoaded', () => {
     // Initialize background slideshow
     initBgSlideshow();
 
-    // Pre-generate a few preview cards
-    const previewContainer = document.getElementById('card-preview');
-    let previewHTML = '';
-    for (let i = 1; i <= 4; i++) {
-        previewHTML += createCardHTML(i);
-    }
-    previewContainer.innerHTML = previewHTML;
+    // Generate cards (both preview & print area)
+    generateCards();
 
     // Load ashirbads
     loadAshirbads();
