@@ -813,6 +813,21 @@ function initMusicPlayer() {
     `).join('');
 }
 
+// Quick winning rules reference drawer for caller
+function toggleCallerRules() {
+    const drawer = document.getElementById('caller-rules-drawer');
+    const arrow = document.getElementById('rules-drawer-arrow');
+    const btn = document.getElementById('btn-caller-rules');
+    if (!drawer) return;
+    const isCollapsed = drawer.classList.toggle('collapsed');
+    if (arrow) {
+        arrow.textContent = isCollapsed ? '▼' : '▲';
+    }
+    if (btn) {
+        btn.setAttribute('aria-expanded', !isCollapsed);
+    }
+}
+
 // Generate cards and initialize on load
 window.addEventListener('DOMContentLoaded', () => {
     // Apply configuration to HTML

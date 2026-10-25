@@ -73,6 +73,24 @@ Then visit `http://localhost:8888` on your computer or mobile device!
 
 ---
 
+## 🏆 Winning Rules & Prize Patterns (खेलका नियम तथा पुरस्कार)
+
+In community and family Bingo, awarding prizes across **4 sequential rounds** keeps everyone excited from start to finish!
+
+| Prize Round | Winning Pattern | Rule & Description | Sample Reward / Dakshina |
+|:---:|:---:|---|:---:|
+| **Round 1: 1st Prize**<br>(पहिलो पुरस्कार) | **१ लाइन (Single Line)** | Any complete line of 5 numbers (horizontal row, vertical column, or diagonal). Center FREE space counts! | Early Bird Prize / दक्षिणा |
+| **Round 2: Bonus**<br>(बोनस पुरस्कार) | **४ कुना (Four Corners)** | The 4 extreme corner numbers of the card (top-left, top-right, bottom-left, bottom-right). | Sweet box or gift token |
+| **Round 3: 2nd Prize**<br>(दोस्रो पुरस्कार) | **२ लाइन (Two Lines)** | Any 2 completed lines on the same card (e.g., 2 horizontal rows or 1 row + 1 column). | 2nd Place Prize / दक्षिणा |
+| **Round 4: Grand Bumper**<br>(👑 बम्पर पुरस्कार) | **पूरा कार्ड (Full House / Blackout)** | **All 24 numbers matched on the card!** The first player to cover the entire card wins the Grand Bumper Prize! | 🏆 Grand Dashain Bumper Gift |
+
+### 💡 Host Tips for Running the Rounds:
+1. **Don't clear cards between rounds:** Players keep marking their existing cards as numbers continue to be drawn, progressing from 1 Line → Corners → 2 Lines → Full House.
+2. **Immediate verification:** When a player shouts *"BINGO!"*, quickly check the numbers against the **Called Numbers Board** on the screen.
+3. **Ties:** If two players shout at the exact same number, award both or do a quick 1-number draw tiebreaker!
+
+---
+
 ## 🎨 Easy Customization
 
 Everything is controlled by a single file: `config.js`! No coding required:

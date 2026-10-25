@@ -98,7 +98,77 @@
                     <div class="feature-card">
                         <div class="feature-icon">🏆</div>
                         <h4>Step 4: Win!</h4>
-                        <p>First to complete a line shouts "BINGO!" and receives Dashain Ashirbad!</p>
+                        <p>First to complete a line or full card shouts "BINGO!" and wins!</p>
+                    </div>
+                </div>
+
+                <!-- WINNING RULES & PATTERNS SECTION -->
+                <div class="rules-section">
+                    <div class="rules-header">
+                        <span class="rules-badge">🏆 खेलका नियमहरू • WINNING RULES</span>
+                        <h3>कसरी जित्ने ? How to Win in Dashain Bingo</h3>
+                        <p>तपाईंको पार्टीमा यी ४ चरणहरूमा विभिन्न विजेताहरूलाई पुरस्कार (दक्षिणा) बाँड्न सक्नुहुन्छ</p>
+                    </div>
+                    <div class="rules-grid">
+                        <!-- Rule 1: Single Line -->
+                        <div class="rule-card">
+                            <span class="rule-pill-prize">१. पहिलो पुरस्कार (1st Prize)</span>
+                            <div class="mini-grid pattern-line" aria-hidden="true">
+                                <span class="m-cell hit"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span>
+                                <span class="m-cell"></span><span class="m-cell hit"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span>
+                                <span class="m-cell"></span><span class="m-cell"></span><span class="m-cell free">🪷</span><span class="m-cell"></span><span class="m-cell"></span>
+                                <span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell hit"></span><span class="m-cell"></span>
+                                <span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell hit"></span>
+                            </div>
+                            <h4>१ लाइन (Single Line)</h4>
+                            <span class="rule-sub">Any 1 Row, Column or Diagonal</span>
+                            <p>कुनै पनि तेर्सो ५, ठाडो ५ वा छड्के ५ वटा नम्बर सबैभन्दा पहिले मिलाउने खेलाडी।</p>
+                        </div>
+
+                        <!-- Rule 2: Four Corners -->
+                        <div class="rule-card">
+                            <span class="rule-pill-prize">२. बोनस पुरस्कार (Bonus)</span>
+                            <div class="mini-grid pattern-corners" aria-hidden="true">
+                                <span class="m-cell hit"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell hit"></span>
+                                <span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span>
+                                <span class="m-cell"></span><span class="m-cell"></span><span class="m-cell free">🪷</span><span class="m-cell"></span><span class="m-cell"></span>
+                                <span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span>
+                                <span class="m-cell hit"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell hit"></span>
+                            </div>
+                            <h4>चार कुना (Four Corners)</h4>
+                            <span class="rule-sub">4 Extreme Corner Numbers</span>
+                            <p>कार्डको चारै छेउका ४ वटा कुनाका नम्बरहरू सबैभन्दा पहिले काट्ने खेलाडी।</p>
+                        </div>
+
+                        <!-- Rule 3: Two Lines -->
+                        <div class="rule-card">
+                            <span class="rule-pill-prize">३. दोस्रो पुरस्कार (2nd Prize)</span>
+                            <div class="mini-grid pattern-double" aria-hidden="true">
+                                <span class="m-cell hit"></span><span class="m-cell hit"></span><span class="m-cell hit"></span><span class="m-cell hit"></span><span class="m-cell hit"></span>
+                                <span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span>
+                                <span class="m-cell"></span><span class="m-cell"></span><span class="m-cell free">🪷</span><span class="m-cell"></span><span class="m-cell"></span>
+                                <span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span><span class="m-cell"></span>
+                                <span class="m-cell hit"></span><span class="m-cell hit"></span><span class="m-cell hit"></span><span class="m-cell hit"></span><span class="m-cell hit"></span>
+                            </div>
+                            <h4>२ लाइन (Two Lines)</h4>
+                            <span class="rule-sub">Any 2 Completed Lines</span>
+                            <p>कुनै पनि २ वटा पूरा लाइनहरू (तेर्सो वा ठाडो) मिलाउने पहिलो खेलाडी।</p>
+                        </div>
+
+                        <!-- Rule 4: Full House (Blackout) -->
+                        <div class="rule-card rule-card-bumper">
+                            <span class="rule-pill-prize bumper-pill">👑 बम्पर पुरस्कार (Grand Bumper)</span>
+                            <div class="mini-grid pattern-full" aria-hidden="true">
+                                <span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span>
+                                <span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span>
+                                <span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell free">🪷</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span>
+                                <span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span>
+                                <span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span><span class="m-cell hit-gold">★</span>
+                            </div>
+                            <h4>पूरा कार्ड (Full House)</h4>
+                            <span class="rule-sub">All 24 Numbers Matched!</span>
+                            <p>कार्डका सबै २४ वटै नम्बरहरू काटिएपछि ठूलो स्वरले <strong>"BINGO!"</strong> भनेर बम्पर उपहार जित्नुहोस्!</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -218,6 +288,38 @@
                             </div>
                         </div>
                     </div>
+                    <!-- QUICK RULES REFERENCE DRAWER FOR CALLER -->
+                    <div class="caller-rules-toggle-wrap">
+                        <button class="btn-caller-rules" onclick="toggleCallerRules()" id="btn-caller-rules" aria-expanded="false" aria-controls="caller-rules-drawer">
+                            <span class="caller-rules-btn-title">🏆 खेलका नियम तथा पुरस्कार (Winning Rules & Patterns)</span>
+                            <span class="drawer-arrow" id="rules-drawer-arrow">▼</span>
+                        </button>
+                        <div id="caller-rules-drawer" class="caller-rules-drawer collapsed">
+                            <div class="caller-rules-grid">
+                                <div class="c-rule-item">
+                                    <span class="c-rule-badge">१. 1st Prize</span>
+                                    <h4>१ लाइन (Single Line)</h4>
+                                    <p>कुनै पनि १ तेर्सो, ठाडो वा छड्के ५ वटा नम्बर</p>
+                                </div>
+                                <div class="c-rule-item">
+                                    <span class="c-rule-badge">२. Bonus</span>
+                                    <h4>४ कुना (Four Corners)</h4>
+                                    <p>कार्डको चारै छेउका ४ वटा कुनाका नम्बरहरू</p>
+                                </div>
+                                <div class="c-rule-item">
+                                    <span class="c-rule-badge">३. 2nd Prize</span>
+                                    <h4>२ लाइन (Two Lines)</h4>
+                                    <p>कुनै पनि २ पूरा लाइनहरू (तेर्सो वा ठाडो)</p>
+                                </div>
+                                <div class="c-rule-item c-rule-bumper">
+                                    <span class="c-rule-badge c-badge-bumper">👑 Grand Bumper</span>
+                                    <h4>पूरा कार्ड (Full House)</h4>
+                                    <p>सबै २४ वटै नम्बर काटिएपछि बम्पर उपहार!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="called-board">
                         <h3>Called Numbers Board</h3>
                         <div class="board-columns">
